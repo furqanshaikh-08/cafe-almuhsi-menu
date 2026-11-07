@@ -296,7 +296,7 @@
               <div class="dish-title">${item.name}</div>
               <div class="dish-desc">${item.description || ''}</div>
               <div class="dish-bottom">
-                <div class="dish-price">₹${item.price}</div>
+                <div class="dish-price">${item.price}</div>
                 <button class="order-btn" onclick="orderItem('${encodeURIComponent(item.name)}', '${item.price}')">
                   Order
                 </button>
