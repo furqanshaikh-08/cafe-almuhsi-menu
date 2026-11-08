@@ -14,7 +14,7 @@
 
   <title>Café Al-Makki | Taste of Happiness</title>
   
-  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -49,7 +49,7 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      padding-bottom: 90px;
+      padding-bottom: 95px;
       user-select: none;
       -webkit-font-smoothing: antialiased;
     }
@@ -87,7 +87,7 @@
       margin-top: 2px;
     }
 
-    /* Controls: Search, Sort & Dietary Filter */
+    /* Controls: Search & Sort */
     .controls-wrap {
       display: flex;
       gap: 8px;
@@ -331,7 +331,7 @@
     }
     .add-btn:active { background: var(--primary-dark); }
 
-    /* Bottom Bill / Selection Bar */
+    /* Floating Cart Bar */
     .cart-bar {
       position: fixed;
       bottom: 14px;
@@ -340,7 +340,7 @@
       background: linear-gradient(135deg, #22150e, #331f14);
       color: white;
       border-radius: 16px;
-      padding: 12px 20px;
+      padding: 10px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -358,7 +358,7 @@
     }
 
     .cart-count {
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       color: var(--accent-gold);
       font-weight: 600;
       text-transform: uppercase;
@@ -366,23 +366,158 @@
     }
 
     .cart-total-price {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 700;
       letter-spacing: -0.3px;
     }
 
-    .clear-cart-btn {
-      background: rgba(255, 255, 255, 0.12);
-      color: #f5f5f4;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 8px 14px;
-      border-radius: 8px;
+    .view-cart-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(154, 52, 18, 0.4);
+    }
+    .view-cart-btn:active { background: var(--primary-dark); }
+
+    /* Bottom Sheet Cart Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      z-index: 100;
+      display: none;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal-sheet {
+      background: var(--surface);
+      width: 100%;
+      max-width: 500px;
+      max-height: 80vh;
+      border-radius: 20px 20px 0 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      animation: slideUp 0.25s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+
+    .modal-list {
+      flex: 1;
+      overflow-y: auto;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-right: 4px;
+    }
+
+    .modal-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface-subtle);
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .modal-item-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .modal-item-sub {
       font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .modal-item-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-item-total {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      min-width: 45px;
+      text-align: right;
+    }
+
+    .bill-summary {
+      border-top: 1px dashed var(--border);
+      padding-top: 14px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bill-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .bill-total {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .clear-all-link {
+      background: none;
+      border: none;
+      color: var(--non-veg);
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
-    }
-    .clear-cart-btn:active {
-      background: rgba(255, 255, 255, 0.2);
+      margin-top: 10px;
+      text-align: center;
+      padding: 6px;
     }
 
     .loader {
@@ -424,13 +559,34 @@
     <div class="loader">Loading menu items...</div>
   </main>
 
-  <!-- Live Bill & Selection Bar -->
+  <!-- Floating Bar with View Cart Button -->
   <div class="cart-bar" id="cartBar">
     <div class="cart-info-text">
-      <span class="cart-count" id="cartCount">0 Items Selected</span>
+      <span class="cart-count" id="cartCount">0 Items</span>
       <span class="cart-total-price" id="cartTotal">₹0</span>
     </div>
-    <button class="clear-cart-btn" onclick="clearCart()">Clear</button>
+    <button class="view-cart-btn" onclick="openCartModal()">
+      <span>View Cart</span> ➔
+    </button>
+  </div>
+
+  <!-- View Cart Bottom Sheet Modal -->
+  <div class="modal-overlay" id="cartModal" onclick="closeCartModal(event)">
+    <div class="modal-sheet" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">Your Cart</div>
+        <button class="close-btn" onclick="closeCartModal()">&times;</button>
+      </div>
+
+      <div class="modal-list" id="modalItemList"></div>
+
+      <div class="bill-summary">
+        <div class="bill-label">Grand Total</div>
+        <div class="bill-total" id="modalGrandTotal">₹0</div>
+      </div>
+
+      <button class="clear-all-link" onclick="clearCart()">Clear entire cart</button>
+    </div>
   </div>
 
   <script>
@@ -481,7 +637,7 @@
         `<button class="chip ${cat === activeCategory ? 'active' : ''}" onclick="selectCategory('${cat}', this)">${cat}</button>`
       ).join('');
 
-      // Add Veg & Non-Veg Toggles
+      // Add Veg & Non-Veg Fast Toggles
       html += `
         <button class="chip chip-diet ${activeDiet === 'veg' ? 'active-veg' : ''}" onclick="toggleDiet('veg')">
           <span style="color: var(--veg); font-weight: bold;">●</span> Veg
@@ -571,7 +727,7 @@
       }).join('');
     }
 
-    // 6. Selection / Cart Calculations
+    // 6. Cart Management
     function updateQty(encodedName, change) {
       const name = decodeURIComponent(encodedName);
       const item = menuData.find(i => i.name === name);
@@ -589,12 +745,18 @@
 
       syncCartUI();
       renderMenu();
+
+      // If the modal drawer is open, keep its list synced
+      if (document.getElementById('cartModal').classList.contains('open')) {
+        renderCartModalItems();
+      }
     }
 
     function clearCart() {
       cart = {};
       syncCartUI();
       renderMenu();
+      closeCartModal();
     }
 
     function syncCartUI() {
@@ -606,15 +768,64 @@
       const totalPrice = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
 
       if (totalItems > 0) {
-        cartCount.innerText = `${totalItems} ${totalItems === 1 ? 'Item' : 'Items'} Selected`;
+        cartCount.innerText = `${totalItems} ${totalItems === 1 ? 'Item' : 'Items'}`;
         cartTotal.innerText = `₹${totalPrice}`;
         cartBar.classList.add('visible');
       } else {
         cartBar.classList.remove('visible');
+        closeCartModal();
       }
     }
 
-    // 7. Event Listeners
+    // 7. View Cart Modal Operations
+    function openCartModal() {
+      const modal = document.getElementById('cartModal');
+      renderCartModalItems();
+      modal.classList.add('open');
+    }
+
+    function closeCartModal() {
+      document.getElementById('cartModal').classList.remove('open');
+    }
+
+    function renderCartModalItems() {
+      const listContainer = document.getElementById('modalItemList');
+      const grandTotalContainer = document.getElementById('modalGrandTotal');
+      const itemsList = Object.values(cart);
+
+      if (itemsList.length === 0) {
+        closeCartModal();
+        return;
+      }
+
+      let grandTotal = 0;
+
+      listContainer.innerHTML = itemsList.map(item => {
+        const itemTotal = item.price * item.qty;
+        grandTotal += itemTotal;
+
+        return `
+          <div class="modal-item">
+            <div>
+              <div class="modal-item-title">${item.name}</div>
+              <div class="modal-item-sub">₹${item.price} each</div>
+            </div>
+            <div class="modal-item-right">
+              <div class="stepper">
+                <button class="step-btn" onclick="updateQty('${encodeURIComponent(item.name)}', -1)">−</button>
+                <span class="step-qty">${item.qty}</span>
+                <button class="step-btn" onclick="updateQty('${encodeURIComponent(item.name)}', 1)">+</button>
+              </div>
+              <div class="modal-item-total">₹${itemTotal}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      grandTotalContainer.innerText = `₹${grandTotal}`;
+    }
+
+    // 8. Event Listeners
     document.getElementById('searchInput').addEventListener('input', renderMenu);
     document.getElementById('sortSelect').addEventListener('change', (e) => {
       currentSort = e.target.value;
